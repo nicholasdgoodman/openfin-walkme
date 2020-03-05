@@ -1,0 +1,20 @@
+{
+    "startup_app": {
+        "name": "Openfin-Walkme",
+        "description": "OpenFin Walkme",
+        "url": "http://localhost:3001/index.html",
+        "uuid": "Openfin-Walkme-POC",
+        "autoShow": true,
+        "preloadScripts": [
+            {
+                "url": "http://localhost:3001/preload.js",
+                "mandatory": true
+            }
+        ]
+    },
+    "runtime": {
+        "arguments": "",
+        "version": "stable"
+    },
+    "shortcut": {}
+}
