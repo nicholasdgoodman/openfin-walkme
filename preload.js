@@ -13,5 +13,5 @@ window.addEventListener('DOMContentLoaded', function() {
   walkme.async = true;
   walkme.src = walkmeUrl;
   document.head.prepend(walkme);
-  window._walkmeConfig = {smartLoad:true}; 
+  window._walkmeConfig = { smartLoad:true }; 
 });

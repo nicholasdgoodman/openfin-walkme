@@ -10,11 +10,17 @@
                 "url": "http://localhost:3001/preload.js",
                 "mandatory": true
             }
-        ]
+        ],
+        "experimental": {
+            "contentSecurityPolicies": {
+                "script-src": [ "https://*.walkme.com" ],
+                "connect-src": [ "https://*.walkme.com" ]
+            }
+        }
     },
     "runtime": {
         "arguments": "",
-        "version": "stable"
+        "version": "alpha"
     },
     "shortcut": {}
 }

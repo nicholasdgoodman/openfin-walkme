@@ -1,8 +1,34 @@
 <html>
 <head>
+    <style>
+        pre {
+            background-color: lightgray;
+        }
+    </style>
 </head>
 <body>
 <div>WalkMe Test</div>
-<input id="url" value="https://www.salesforce.com"></input><button onclick="window.open(document.getElementById('url').value)">Open</button>
+<input id="url" value="https://www.salesforce.com"></input>
+<button id="openButton">Open</button>
+<pre id="cspRules" contenteditable></pre>
+<script>
+    let url = document.querySelector('#url').value;
+    let openButton = document.querySelector('#openButton');
+    let cspRules = document.querySelector('#cspRules');
+
+    fin.Window.getCurrentSync().getOptions().then(opts => {
+        cspRules.innerText = JSON.stringify(opts.experimental.contentSecurityPolicies || {}, null, 2);
+    });
+
+    openButton.addEventListener('click', () => {
+        fin.Window.create({
+            name: document.getElementById('url').value,
+            url,
+            experimental: {
+                contentSecurityPolicies: JSON.parse(cspRules.innerText)
+            }
+        });
+    });
+</script>
 </body>
 </html>
