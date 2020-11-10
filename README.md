@@ -23,6 +23,6 @@ openfin -l -c http://localhost:3001/app.json
 
 ## Description Functionality
 
-The `app.json` file declares a local preload script, which runs on each window after navigation and before DOM load. The preload script, `preload.js` then waits for `DOMContentLoaded` and injects a WalkMe script tag at the top of each document.
+This demo highlights the different ways to create OpenFin windows to leverage WalkMe, both as a in-document `<script>` tag / Snippet as well as using Preload scripts to mimic the functionality of the WalkMe Player extension.
 
 Additionally, in order to bypass CSP rules, this demo leverages an experimental set of window Options which allow relaxing CSP rules per-window to specified domains. These settings are delcared in the manifest in this repo, but must also be supplied to each window creation options as demonstrated in the `index.html` file.
