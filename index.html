@@ -7,25 +7,49 @@
     </style>
 </head>
 <body>
-<div>WalkMe Test</div>
-<input id="url" value="https://www.salesforce.com"></input>
-<button id="openButton">Open</button>
-<pre id="cspRules" contenteditable></pre>
+<h1>WalkMe Test</h1>
+<div><strong>OpenFin Version: </strong><span id="openfinversion"></span></div>
+<h2>Deployment Method 1: Manually Insert Snippet</h2>
+<input id="url1" value="http://localhost:3001/child-app-1.html"></input>
+<button id="openButton1">Open</button>
+<h2>Deployment Method 2: Inject Snippet via Preload Script</h2>
+<select id="url2">
+    <option value="http://localhost:3001/child-app-2.html">http://localhost:3001/child-app-2.html</option>
+    <option value="https://www.github.com">https://www.github.com</option>
+    <option value="https://www.salesforce.com">https://www.salesforce.com</option>
+</select>
+<button id="openButton2">Open</button>
+
 <script>
-    let url = document.querySelector('#url').value;
-    let openButton = document.querySelector('#openButton');
+    let openfinVersionSpan = document.querySelector('#openfinversion');
+    let openWithoutInjectionButton = document.querySelector('#openButton1');
+    let openWithInjectionButton = document.querySelector('#openButton2');
     let cspRules = document.querySelector('#cspRules');
 
-    fin.Window.getCurrentSync().getOptions().then(opts => {
-        cspRules.innerText = JSON.stringify(opts.experimental.contentSecurityPolicies || {}, null, 2);
-    });
+    openfinVersionSpan.innerHTML = fin.desktop.getVersion();
 
-    openButton.addEventListener('click', () => {
+    // Creating an app / window which includes the snippet, no need to inject!
+    openWithoutInjectionButton.addEventListener('click', () => {
         fin.Window.create({
-            name: document.getElementById('url').value,
-            url,
+            name: fin.desktop.getUuid(),
+            url: document.getElementById('url1').value
+        });
+    })
+
+    // Creating an app / window which cannot be modified, better inject the snippet!
+    openWithInjectionButton.addEventListener('click', () => {
+        fin.Window.create({
+            name: fin.desktop.getUuid(),
+            url: document.getElementById('url2').value,
+            // these two settings mimic the WalkMe Extension:
+            preloadScripts: [
+                { url: 'http://localhost:3001/preload.js' }
+            ],
             experimental: {
-                contentSecurityPolicies: JSON.parse(cspRules.innerText)
+                contentSecurityPolicies: {
+                    "script-src": [ "https://*.walkme.com" ],
+                    "connect-src": [ "https://*.walkme.com" ]
+                }
             }
         });
     });

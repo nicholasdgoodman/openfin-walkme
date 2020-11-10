@@ -4,23 +4,11 @@
         "description": "OpenFin Walkme",
         "url": "http://localhost:3001/index.html",
         "uuid": "Openfin-Walkme-POC",
-        "autoShow": true,
-        "preloadScripts": [
-            {
-                "url": "http://localhost:3001/preload.js",
-                "mandatory": true
-            }
-        ],
-        "experimental": {
-            "contentSecurityPolicies": {
-                "script-src": [ "https://*.walkme.com" ],
-                "connect-src": [ "https://*.walkme.com" ]
-            }
-        }
+        "autoShow": true
     },
     "runtime": {
         "arguments": "",
-        "version": "alpha"
+        "version": "17.85.54.10"
     },
     "shortcut": {}
 }

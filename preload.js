@@ -3,7 +3,7 @@ if(window !== window.top) {
   return;
 }
 
-const walkmeUrl = 'https://cdn.walkme.com/users/9dc2cc7215184283a01fb453b44d2883/test/walkme_9dc2cc7215184283a01fb453b44d2883_https.js';
+const walkmeUrl = 'https://cdn.walkme.com/users/bb2caab25e424d66a5e69e08aff6e93c/test/walkme_bb2caab25e424d66a5e69e08aff6e93c_https.js';
 
 window.addEventListener('DOMContentLoaded', function() {
   console.log('Injecting Walkme Script Tag');
